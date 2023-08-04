@@ -105,16 +105,16 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="custTitleText" min="-2" pref="141" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="custNameLabel" min="-2" pref="97" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="custNameText" max="32767" attributes="0"/>
-                                  </Group>
                                   <Component id="custAddressText" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="custIdText" min="-2" pref="141" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="custDobText" min="-2" pref="141" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
+                                              <Component id="custSalaryText" min="-2" pref="133" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="custPostalCodeText" min="-2" pref="220" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="custCityText" min="-2" pref="220" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -122,15 +122,24 @@
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="custProvinceText" min="-2" pref="225" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="custIdText" min="-2" pref="141" max="-2" attributes="0"/>
-                                          <Component id="custDobText" min="-2" pref="141" max="-2" attributes="0"/>
-                                          <Component id="custPostalCodeText" min="-2" pref="220" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="310" max="32767" attributes="0"/>
                                   </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="custSalaryLabel" alignment="1" min="-2" pref="97" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="custTitleText" min="-2" pref="141" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="custNameLabel" min="-2" pref="97" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="custNameText" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="deleteButton" min="-2" pref="151" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -161,6 +170,8 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="custDobLabel" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="custDobText" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="custSalaryLabel" alignment="1" max="32767" attributes="0"/>
+                          <Component id="custSalaryText" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -185,7 +196,7 @@
                           <Component id="addButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="deleteButton" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="92" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -272,6 +283,9 @@
                   <Dimension value="[120, 25]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="updateButton">
               <Properties>
@@ -297,6 +311,13 @@
                   <Dimension value="[143, 27]"/>
                 </Property>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="custSalaryLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Salary"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="custSalaryText">
             </Component>
           </SubComponents>
         </Container>

@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package pos.mvc.model;
-
+import pos.mvc.controller.CustomerController;
 /**
  *
  * @author ASUS
@@ -11,6 +11,7 @@ package pos.mvc.model;
 public class CustomerModel {
     private String custId;
     private String title;
+    private String name;
     private String dob;
     private Double salary;
     private String address;
@@ -18,6 +19,22 @@ public class CustomerModel {
     private String province;
     private String zip;
 
+    public CustomerModel() {
+    }
+
+    public CustomerModel(String custId, String title, String name, String dob, Double salary, String address, String city, String province, String zip) {
+        this.custId = custId;
+        this.title = title;
+        this.name = name;
+        this.dob = dob;
+        this.salary = salary;
+        this.address = address;
+        this.city = city;
+        this.province = province;
+        this.zip = zip;
+    }
+
+    
     /**
      * @return the custId
      */
@@ -44,6 +61,20 @@ public class CustomerModel {
      */
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
@@ -132,7 +163,8 @@ public class CustomerModel {
 
     @Override
     public String toString() {
-        return "CustomerModel{" + "custId=" + custId + ", title=" + title + ", dob=" + dob + ", salary=" + salary + ", address=" + address + ", city=" + city + ", province=" + province + ", zip=" + zip + '}';
+        return "CustomerModel{" + "custId=" + custId + ", title=" + title + ", name=" + name + ", dob=" + dob + ", salary=" + salary + ", address=" + address + ", city=" + city + ", province=" + province + ", zip=" + zip + '}';
     }
-    
+
+   
 }
