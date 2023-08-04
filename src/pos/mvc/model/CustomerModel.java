@@ -4,6 +4,7 @@
  */
 package pos.mvc.model;
 import pos.mvc.controller.CustomerController;
+
 /**
  *
  * @author ASUS
