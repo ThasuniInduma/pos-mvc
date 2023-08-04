@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package pos.mvc.view;
+
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
  * @author ASUS
  */
 public class CustomerView extends javax.swing.JFrame {
+
     private CustomerController customerController;
 
     /**
@@ -181,6 +183,11 @@ public class CustomerView extends javax.swing.JFrame {
         deleteButton.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         deleteButton.setText("Delete Customer");
         deleteButton.setPreferredSize(new java.awt.Dimension(143, 27));
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
 
         custSalaryLabel.setText("Salary");
 
@@ -366,7 +373,7 @@ public class CustomerView extends javax.swing.JFrame {
     }//GEN-LAST:event_custDobTextActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-       updateCustomer();
+        updateCustomer();
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
@@ -377,10 +384,14 @@ public class CustomerView extends javax.swing.JFrame {
         searchCustomer();
     }//GEN-LAST:event_customerTableMouseClicked
 
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        deleteCustomer();
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JPanel basePanel;
@@ -415,16 +426,16 @@ public class CustomerView extends javax.swing.JFrame {
     private javax.swing.JPanel tablePanel;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
-    private void saveCustomer(){
+    private void saveCustomer() {
         CustomerModel customer = new CustomerModel(
-                custIdText.getText(), 
-                custTitleText.getText(), 
-                custNameText.getText(), 
-                custDobText.getText(), 
-                Double.parseDouble(custSalaryText.getText()), 
-                custAddressText.getText(), 
-                custCityText.getText(), 
-                custProvinceText.getText(), 
+                custIdText.getText(),
+                custTitleText.getText(),
+                custNameText.getText(),
+                custDobText.getText(),
+                Double.parseDouble(custSalaryText.getText()),
+                custAddressText.getText(),
+                custCityText.getText(),
+                custProvinceText.getText(),
                 custPostalCodeText.getText());
         try {
             String resp = customerController.saveCustomer(customer);
@@ -436,7 +447,8 @@ public class CustomerView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }
-    private void Clear(){
+
+    private void Clear() {
         custIdText.setText("");
         custTitleText.setText("");
         custNameText.setText("");
@@ -447,22 +459,23 @@ public class CustomerView extends javax.swing.JFrame {
         custProvinceText.setText("");
         custPostalCodeText.setText("");
     }
-    private void loadallCustomers(){
-        
+
+    private void loadallCustomers() {
+
         try {
-            String [] columns = {"Id","Name","Address","Salary","Postal Code"};
-            DefaultTableModel dtm = new DefaultTableModel(columns,0){
+            String[] columns = {"Id", "Name", "Address", "Salary", "Postal Code"};
+            DefaultTableModel dtm = new DefaultTableModel(columns, 0) {
                 @Override
                 public boolean isCellEditable(int row, int column) {
                     return false;
                 }
             };
             customerTable.setModel(dtm);
-            
+
             ArrayList<CustomerModel> customers = customerController.getAllCustomer();
-            
-            for(CustomerModel customer : customers){
-                Object [] rowData = {customer.getCustId(),customer.getTitle()+" "+customer.getName(),customer.getAddress()+", "+customer.getCity(),customer.getSalary(),customer.getZip()};
+
+            for (CustomerModel customer : customers) {
+                Object[] rowData = {customer.getCustId(), customer.getTitle() + " " + customer.getName(), customer.getAddress() + ", " + customer.getCity(), customer.getSalary(), customer.getZip()};
                 dtm.addRow(rowData);
             }
         } catch (SQLException ex) {
@@ -470,12 +483,13 @@ public class CustomerView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }
-    private void searchCustomer(){
+
+    private void searchCustomer() {
         try {
             String custId = customerTable.getValueAt(customerTable.getSelectedRow(), 0).toString();
             CustomerModel customerModel = customerController.getCustomer(custId);
-            
-            if(customerModel!=null){
+
+            if (customerModel != null) {
                 custIdText.setText(customerModel.getCustId());
                 custTitleText.setText(customerModel.getTitle());
                 custNameText.setText(customerModel.getName());
@@ -485,16 +499,17 @@ public class CustomerView extends javax.swing.JFrame {
                 custCityText.setText(customerModel.getCity());
                 custProvinceText.setText(customerModel.getProvince());
                 custPostalCodeText.setText(customerModel.getZip());
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Customer Not Found");
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }
-    public void updateCustomer(){
+
+    public void updateCustomer() {
         try {
             CustomerModel customer = new CustomerModel(
                     custIdText.getText(),
@@ -512,7 +527,20 @@ public class CustomerView extends javax.swing.JFrame {
             loadallCustomers();
         } catch (SQLException ex) {
             Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+
+    private void deleteCustomer() {
+        try {
+            String custId = custIdText.getText();
+            String resp = customerController.deleteCustomer(custId);
+            JOptionPane.showMessageDialog(this, resp);
+            Clear();
+            loadallCustomers();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }
 }
-
