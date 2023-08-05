@@ -5,7 +5,9 @@
         <group>
             <file>file:/D:/JAVA/New%20folder/New%20Folder/pos-mvc/src/pos/mvc/model/CustomerModel.java</file>
             <file>file:/D:/JAVA/New%20folder/New%20Folder/pos-mvc/src/pos/mvc/view/CustomerView.java</file>
+            <file>file:/D:/JAVA/New%20folder/New%20Folder/pos-mvc/src/pos/mvc/db/DBConnection.java</file>
             <file>file:/D:/JAVA/New%20folder/New%20Folder/pos-mvc/src/pos/mvc/PosMvc.java</file>
+            <file>file:/D:/JAVA/New%20folder/New%20Folder/pos-mvc/src/pos/mvc/controller/CustomerController.java</file>
         </group>
     </open-files>
 </project-private>
