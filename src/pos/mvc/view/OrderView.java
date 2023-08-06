@@ -5,9 +5,12 @@
 package pos.mvc.view;
 
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
+//import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+//import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -439,8 +442,10 @@ public class OrderView extends javax.swing.JFrame {
 
     private void placeOrder() {
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-            OrderModel orderModel = new OrderModel(orderIdText.getText(),sdf.format(new Date()), customerIdText.getText());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+            OrderModel orderModel = new OrderModel(orderIdText.getText(),LocalDate.now().format(formatter), customerIdText.getText());
+            //OrderModel orderModel = new OrderModel(orderIdText.getText(),sdf.format(new Date()), customerIdText.getText());
             
             String result = orderController.placeOrder(orderModel, orderDetailModel);
             JOptionPane.showMessageDialog(this, result);
