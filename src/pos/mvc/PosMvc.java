@@ -4,6 +4,7 @@
  */
 package pos.mvc;
 import pos.mvc.view.CustomerView;
+import pos.mvc.view.ItemView;
 /**
  *
  * @author ASUS
@@ -15,7 +16,8 @@ public class PosMvc {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        new CustomerView().setVisible(true);
+        //new CustomerView().setVisible(true);
+        new ItemView().setVisible(true);
     }
     
 }
